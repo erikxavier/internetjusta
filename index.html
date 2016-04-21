@@ -37,12 +37,12 @@
 					<div class="input-group-addon"><strong>GB</strong></div>
 				</div>
 			</div>
-        	<p class='text-center'><a ng-click="ctrl.calcular(velocidade, franquia)" ng-disabled="!velocidade || !franquia" class="btn btn-lg btn-success" href="#" role="button">Calcular</a></p>     
+        	<p class='text-center'><a href="#report" ng-click="ctrl.calcular(velocidade, franquia)" ng-disabled="!velocidade || !franquia" class="btn btn-lg btn-success" href="#" role="button">Calcular</a></p>     
 			</div>
 		</div>			
       </div>
 
-      <div class="row marketing report" ng-show="ctrl.relatorio">
+      <div class="row marketing report" ng-show="ctrl.relatorio" id="report">
         <div class="col-lg-4 col-lg-offset-1 text-center bg-success">
           <h4>Sua franquia ideal</h4>
           <p>Se você utilizasse sua internet de forma ininterrupta com a velocidade contratada no periodo de um mês, você consumiria</p>
