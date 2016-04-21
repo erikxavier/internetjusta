@@ -1,88 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="InternetJusta">
 <head>
 <title>#INTERNETSEMLIMITES</title>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script src="app.js"></script>
 </head>
 
-<body>
+<body ng-controller="MainCtrl as ctrl">
+	
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">#InternetJusta</h3>
+      </div>
 
-<div id="wrapper" >
+      <div class="jumbotron">
+        <h1>Relatório de uso da internet</h1>
+        <p class="lead">Com a iminente mudança dos serviços de banda larga fixa do Brasil, resolvi criar este pequeno cálculo para demonstrar as implicações da limitação de dados por meio de franquia.</p>
+		<p>Insira abaixo as informações sobre o seu (possível) plano de internet:</p>
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-4">
+				<div class="form-group">
+				<label for="velocidade">Velocidade contratada</label>
+				<div class="input-group">
+					<input ng-model="velocidade" class="form-control" type="text" id="velocidade" placeholder="Velocidade">
+					<div class="input-group-addon"><strong>Mb/s</strong></div>
+				</div>
+				
+			</div>
+			<div class="form-group">
+				<label for="franquia">Franquia de dados</label>
+				<div class="input-group">
+					<input ng-model="franquia" class="form-control" type="text" id="franquia" placeholder="Franquia">
+					<div class="input-group-addon"><strong>GB</strong></div>
+				</div>
+			</div>
+        	<p class='text-center'><a ng-click="ctrl.calcular(velocidade, franquia)" ng-disabled="!velocidade || !franquia" class="btn btn-lg btn-success" href="#" role="button">Calcular</a></p>     
+			</div>
+		</div>			
+      </div>
 
-	<div id="header">
+      <div class="row marketing report" ng-show="ctrl.relatorio">
+        <div class="col-lg-4 col-lg-offset-1 text-center bg-success">
+          <h4>Sua franquia ideal</h4>
+          <p>Se você utilizasse sua internet de forma ininterrupta com a velocidade contratada no periodo de um mês, você consumiria</p>
+		  <p><strong class="lead">{{ctrl.relatorio.totalMesTB }} de dados</strong></p>
+</br>
+          <h4>Sua franquia</h4>          
+		  <p class="lead">Equivaleria à {{ctrl.relatorio.razao}} da sua franquia ideal</p>		  
+        </div>
+        <div class="col-lg-4 col-lg-offset-2 text-center bg-success">
+          <h4>Tempo de conexão</h4>
+          <p>Seu tempo de conexão, utilizando a velocidade total contratada no período de um mês, seria de</p>
+		  <p class="lead">{{ ctrl.relatorio.tempoMes }}</p>
+</br>
+          <h4>Seu tempo de uso da internet por dia em carga total seria de</h4>
+          <p class="lead">{{ ctrl.relatorio.tempoDia }}</p>
+        </div>
+      </div>
+</br>
+      <footer class="footer">
+        <p>Todos por uma internet justa</p>
+      </footer>
 
-	</div>
-
-	<div id="content">
-
-		<h2>Calculo de uso da Franquia</h2>
-		
-		<form name="form">
-			<table id="tableValues">
-				<tr>
-					<td>
-						<label>Velocidade de Internet em Mb/s</label>
-					</td>
-					<td>
-						<input type="text" size="40" name="velocidade" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Franquia contratada em Gb</label>
-					</td>
-					<td>
-						<input type="text" size="40" name="franquia" />
-					</td>
-				</tr>
-			</table>
-			<input type="submit" name="botao" value="Calcular" />
-		</form>
-		
-		<table id="tableResult" hidden>
-			<tr>
-				<td>
-					<label>Total Initerrupto</label>
-				</td>
-				<td>
-					<input type="text" size="40" name="resultIniterrupto" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>% da Franquia</label>
-				</td>
-				<td>
-					<input type="text" size="40" name="resultFranquia" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Horas por Dia</label>
-				</td>
-				<td>
-					<input type="text" size="40" name="resultDia" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Horas Total</label>
-				</td>
-				<td>
-					<input type="text" size="40" name="resultTotal" />
-				</td>
-			</tr>
-		</table>
-		
-	</div>
-
-	<div id="footer">
-	<h3></h3>
-	</div>
-
-</div>
-
+    </div> <!-- /container -->
 <body>
 
 </html>

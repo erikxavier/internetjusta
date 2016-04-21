@@ -34,15 +34,20 @@ function totalSegundosDia(totalHorasMes) {
     return totalHorasMes/30;
 }
 
-var totalMes = totalMesTB(4),
-    franq = 80,
-    razao = razaoFranq(totalMes, franq),
+function RelatorioFranquia(velocidade, franquia) {
+    this.velocidade = velocidade;
+    this.franquia = franquia;
+    
+    var totalMes = totalMesTB(velocidade),    
+    razao = razaoFranq(totalMes, franquia),
     totalSegundos = totalSegundosMes(razao),
     horasDia = totalSegundosDia(totalSegundos);
+        
+    this.totalMesTB = totalMes.toFixed(2)+"TB";
+    this.razao = razao.toFixed(2)+"%";
+    this.tempoMes = totalSegundos.toHHMMSS();
+    this.tempoDia = horasDia.toHHMMSS();
 
-console.log('Total no Mês: '+totalMes.toFixed(2)+"TB");
-console.log('Razão: '+razao.toFixed(2)+'%');
-console.log('Total de horas de internet: '+totalSegundos.toHHMMSS());
-console.log('Tempo de internet por dia: '+horasDia.toHHMMSS());
+}
 
-console.log()
+module.exports = RelatorioFranquia;
